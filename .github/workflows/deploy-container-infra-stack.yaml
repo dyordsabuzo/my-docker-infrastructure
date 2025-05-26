@@ -17,19 +17,19 @@ jobs:
 
       - name: Opentofu prep
         run: |
-          opentofu init
-          opentofu validate
+          tofu init
+          tofu validate
 
       - name: Opentofu plan
         run: |
-          opentofu plan -out=tofu.plan
+          tofu plan -out=tofu.plan
         env:
           UPCLOUD_USERNAME: ${{ secrets.UPCLOUD_USERNAME }}
           UPCLOUD_PASSWORD: ${{ secrets.UPCLOUD_PASSWORD }}
 
       - name: Opentofu apply
         run: |
-          opentofu apply tofu.plan
+          tofu apply tofu.plan
         env:
           UPCLOUD_USERNAME: ${{ secrets.UPCLOUD_USERNAME }}
           UPCLOUD_PASSWORD: ${{ secrets.UPCLOUD_PASSWORD }}
