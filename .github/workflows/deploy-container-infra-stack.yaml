@@ -17,11 +17,13 @@ jobs:
 
       - name: Opentofu prep
         run: |
+          cd infra
           tofu init
           tofu validate
 
       - name: Opentofu plan
         run: |
+          cd infra
           tofu plan -out=tofu.plan
         env:
           UPCLOUD_USERNAME: ${{ secrets.UPCLOUD_USERNAME }}
@@ -29,6 +31,7 @@ jobs:
 
       - name: Opentofu apply
         run: |
+          cd infra
           tofu apply tofu.plan
         env:
           UPCLOUD_USERNAME: ${{ secrets.UPCLOUD_USERNAME }}
