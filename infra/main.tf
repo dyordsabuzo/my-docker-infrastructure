@@ -30,12 +30,12 @@ resource "upcloud_server" "web" {
 
         inline = [
             "sudo apt update -y",
-      "sudo apt install -y docker.io git",
-      "sudo usermod -aG docker nonroot && sudo systemctl restart docker",
-      "sudo curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
-      "sudo chmod +x /usr/local/bin/docker-compose",
-      "ssh-keyscan github.com >> ~/.ssh/known_hosts",
-      "git clone https://github.com/dyordsabuzo/my-docker-infrastructure.git"
+            "sudo apt install -y docker.io git",
+            "sudo usermod -aG docker nonroot && sudo systemctl restart docker",
+            "sudo curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
+            "sudo chmod +x /usr/local/bin/docker-compose",
+            "ssh-keyscan github.com >> ~/.ssh/known_hosts",
+            "git clone https://github.com/dyordsabuzo/my-docker-infrastructure.git"
         ]
     }
 }
@@ -54,7 +54,7 @@ resource "terraform_data" "docker_compose" {
         inline = [
             "cd my-docker-infrastructure",
             "git pull",
-            "sudo -u nonroot sg docker -c \"docker-compose -f compose.yml up --build -d --force-recreate --remove-orphans\""
+            "sudo -u nonroot sg docker -c \"docker-compose -f compose.yaml up --build -d --force-recreate --remove-orphans\""
         ]
     }
 }
