@@ -35,7 +35,7 @@ resource "upcloud_server" "web" {
       "sudo curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
       "sudo chmod +x /usr/local/bin/docker-compose",
       "ssh-keyscan github.com >> ~/.ssh/known_hosts",
-      "git clone https://github.com/dyordsabuzo/nginx-node-redis.git"
+      "git clone https://github.com/dyordsabuzo/my-docker-infrastructure.git"
         ]
     }
 }
@@ -51,8 +51,10 @@ resource "terraform_data" "docker_compose" {
             host = upcloud_server.web.network_interface[0].ip_address
         }
 
-    inline = [
-      "cd nginx-node-redis && git pull && sudo -u nonroot sg docker -c \"docker-compose -f compose.yml up --build -d\""
+        inline = [
+            "cd my-docker-infrastructure",
+            "git pull",
+            "sudo -u nonroot sg docker -c \"docker-compose -f compose.yml up --build -d --force-recreate --remove-orphans\""
         ]
     }
 }
