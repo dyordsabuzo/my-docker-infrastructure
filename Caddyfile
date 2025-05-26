@@ -1,0 +1,5 @@
+:8080 {
+    reverse_proxy dozzle:8080
+}
+
+import /caddy/configs/*.caddy
