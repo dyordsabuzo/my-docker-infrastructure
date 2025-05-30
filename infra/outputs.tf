@@ -1,4 +1,4 @@
-output "nginx_endpoint" {
-    value = "http://${upcloud_server.web.network_interface[0].ip_address}:80"
-    description = "nginx endpoint"
+output "caddy_server_ip" {
+    value = upcloud_server.web.network_interface[0].ip_address
+    description = "caddy server ip"
 }
