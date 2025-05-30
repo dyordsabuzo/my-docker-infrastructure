@@ -1,6 +1,7 @@
 terraform {
   cloud {
-    organization = "my-organization"
+    hostname     = "app.terraform.io"
+    organization = "pablosspot"
     workspaces {
       name = "my-docker-infrastructure"
     }
